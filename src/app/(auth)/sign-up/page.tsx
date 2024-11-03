@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
 
-const page = () => {
+const SignIn = () => {
   const [username , setUsername] = useState('')
   const [usernameMessage , setUserameMessage] = useState('')
   const [isCheckingUsername , setIsCheckingUsername] = useState(false)
@@ -23,7 +23,7 @@ const page = () => {
 
   const debounced = useDebounceCallback(setUsername , 300) //will call setUsername after 300ms 
   const { toast } = useToast()
-  const router = useRouter();
+  const router = useRouter()
 
   //zod implementation
   const form = useForm<z.infer<typeof signUpSchema>>({
@@ -171,4 +171,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SignIn
