@@ -17,11 +17,11 @@ export async function GET(request:Request) {
         }
     )
     } catch (error) {
-        console.log("Error in generating message from gemini ai")
+        console.log("Error generating messages from gemini ai")
         return Response.json(
             {
                 success: false,
-                message: "Error in generating message from gemini ai"
+                message: "Error generating messages from gemini ai"
             },
             {
                 status: 500
