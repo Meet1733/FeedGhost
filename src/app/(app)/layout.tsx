@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import AuthProvider from "@/context/AuthProvider";
-import { Toaster } from "@/components/ui/toaster"
+import Navbar from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,14 +13,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <AuthProvider>
-        <body
-          // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <body>
+          <Navbar/>
           {children}
-          <Toaster />
         </body>
-      </AuthProvider>
     </html>
   );
 }
