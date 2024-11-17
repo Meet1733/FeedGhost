@@ -10,7 +10,7 @@ export async function sendVerificatoinEmail(
     try{
 
     await resend.emails.send({
-        from: 'Acme <onboarding@resend.dev>',
+        from: 'FeedGhost <feedghost@meet1733.me>',
         to: email,
         subject: 'FeedGhost | Verification code',
         react: VerificationEmail({username , otp:verifyCode}),
