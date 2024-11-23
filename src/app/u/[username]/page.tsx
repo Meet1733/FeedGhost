@@ -76,7 +76,7 @@ const Page = () => {
       console.error("Error fetching message suggestions ", error)
         const axiosError = error as AxiosError<ApiResponse>;
 
-        let errorMessage = axiosError.response?.data.message
+        const errorMessage = axiosError.response?.data.message
         toast({
           title: "Fetching message suggestions failed",
           description: errorMessage,
