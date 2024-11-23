@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { Textarea } from '@/components/ui/textarea'
 import { useToast } from '@/hooks/use-toast'
@@ -18,7 +17,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from "zod"
 
-const page = () => {
+const Page = () => {
   const params = useParams<{username: string}>()
   const username = params.username
   const [isSubmitting , setIsSubmitting] = useState(false)
@@ -53,7 +52,7 @@ const page = () => {
       console.error("Error sending message to the user ", error)
         const axiosError = error as AxiosError<ApiResponse>;
 
-        let errorMessage = axiosError.response?.data.message
+        const errorMessage = axiosError.response?.data.message
         toast({
           title: "Sending message failed",
           description: errorMessage,
@@ -175,4 +174,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
