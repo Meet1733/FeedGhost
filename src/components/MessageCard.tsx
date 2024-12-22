@@ -27,11 +27,12 @@ import { ApiResponse } from "@/types/ApiResponse"
 import dayjs from 'dayjs';
 
 type MessageCardProp = {
+    key: string
     message: Message
     onMessageDelete: (messageId: string) => void
 }
 
-const MessageCard = ({message, onMessageDelete}:MessageCardProp) => {
+const MessageCard = ({key, message, onMessageDelete}:MessageCardProp) => {
 
   const {toast} = useToast()
   const handleDeleteConfirm = async () => {
@@ -41,7 +42,7 @@ const MessageCard = ({message, onMessageDelete}:MessageCardProp) => {
         title: response.data.message
     })
 
-    onMessageDelete(message._id);
+    onMessageDelete(key);
 }
   return (
     <Card className="card-bordered">
