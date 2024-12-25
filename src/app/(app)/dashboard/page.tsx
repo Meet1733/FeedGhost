@@ -20,6 +20,7 @@ const Dashboard = () => {
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isSwitchLoading, setIsSwitchLoading] = useState(false)
+  const [profileUrl, setProfileUrl] = useState("");
   const {toast} = useToast()
 
   const handleDeleteMessage = (messageId: string) => {
@@ -110,9 +111,13 @@ const Dashboard = () => {
     }
   }
 
-  const {username} = session?.user as User || "Loading"
-  const baseUrl =  `${window.location.protocol}//${window.location.host}`
-  const profileUrl = `${baseUrl}/u/${username}`
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const baseUrl = `${window.location.protocol}//${window.location.host}`;
+      const username = (session?.user as User)?.username || "Loading";
+      setProfileUrl(`${baseUrl}/u/${username}`);
+    }
+  }, [session]);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(profileUrl)
