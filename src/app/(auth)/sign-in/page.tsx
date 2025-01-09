@@ -5,10 +5,11 @@ import { Input } from '@/components/ui/input'
 import { useToast } from '@/hooks/use-toast'
 import { signInSchema } from '@/schemas/signInSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Loader2 } from 'lucide-react'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -16,6 +17,7 @@ const SignIn = () => {
   
   const router = useRouter()
   const {toast} = useToast()
+  const [isSigningIn, setIsSigningIn] = useState(false)
 
   //zod implementation
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -27,6 +29,8 @@ const SignIn = () => {
   })
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
+    setIsSigningIn(true)
+    
     const result = await signIn('credentials', {
       redirect: false,
       identifier: data.identifier,
@@ -39,8 +43,10 @@ const SignIn = () => {
         description: "Incorrect username or password",
         variant: "destructive"
       })
+
+      setIsSigningIn(false)
     }
-    
+
     if(result?.url){
       router.replace('/dashboard')
     }
@@ -87,7 +93,15 @@ const SignIn = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Sign In</Button>
+            <Button type="submit" disabled={isSigningIn}>
+                {
+                  isSigningIn ? (
+                    <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin"/> Please wait
+                    </>
+                  ) : ('Sign In')  
+                }
+            </Button>
           </form>
         </Form>
         

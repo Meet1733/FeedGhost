@@ -1,5 +1,10 @@
 [
     {
+      "title": "Message from Meet",
+      "content": "Great project man. How did you integrate GeminiAI?",
+      "received": "2 minutes ago"
+    },
+    {
       "title": "Message from Aditya",
       "content": "Hey, how are you doing today?",
       "received": "10 minutes ago"
@@ -12,6 +17,11 @@
     {
       "title": "Message from Yashraj",
       "content": "Do you have any book recommendations?",
+      "received": "1 day ago"
+    },
+    {
+      "title": "Message from Vineet",
+      "content": "Let's make a project together. Loved your work ✨",
       "received": "1 day ago"
     }
   ]
